@@ -23,7 +23,6 @@ class SearchBox extends Component {
       >
         <input
           type="text"
-          // id="search"
           placeholder="Enter Artist name or Song title"
           onChange={searchChange}
         />
