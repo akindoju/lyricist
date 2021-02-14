@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import './searchBox.css';
 
 class SearchBox extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchfield: '',
-    };
-  }
-
-  onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value });
+  showData = () => {
+    const { searchfield, resultChange } = this.props;
+    fetch(`https://api.lyrics.ovh/suggest/${searchfield}`)
+      .then((res) => res.json())
+      .then((result) => {
+        resultChange(result);
+      })
+      .catch((err) => console.log(err));
   };
-
-  render({ searchChange } = this.props) {
+  render() {
+    const { searchChange } = this.props;
     return (
-      <form id="form">
+      <form
+        id="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          this.showData();
+        }}
+      >
         <input
           type="text"
           // id="search"
