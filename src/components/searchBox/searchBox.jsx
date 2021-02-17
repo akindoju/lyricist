@@ -25,7 +25,9 @@ class SearchBox extends Component {
         id="form"
         onSubmit={(event) => {
           event.preventDefault();
-          this.showData();
+          this.state.searchField.trim().length === 0
+            ? alert('Please Input a keyword')
+            : this.showData();
         }}
       >
         <input
