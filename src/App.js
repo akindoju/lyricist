@@ -7,14 +7,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      searchfield: '',
       result: { data: [] },
     };
   }
-
-  onSearchChange = (event) => {
-    this.setState({ searchfield: event.target.value });
-  };
 
   resultChangeHandler = (value) => {
     this.setState({ result: value });
@@ -24,10 +19,7 @@ class App extends React.Component {
     const { result } = this.state;
     return (
       <div>
-        <Header
-          onSearchChange={this.onSearchChange}
-          onResultChange={this.resultChangeHandler}
-        />
+        <Header onResultChange={this.resultChangeHandler} />
         <Body result={result} />
       </div>
     );

@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import './searchBox.css';
 
 class SearchBox extends Component {
+  state = {
+    searchField: '',
+  };
+
+  searchChangeHandler = (event) => {
+    this.setState({ searchField: event.target.value });
+  };
+
   showData = () => {
-    const { searchfield, resultChange } = this.props;
-    fetch(`https://api.lyrics.ovh/suggest/${searchfield}`)
+    const { resultChange } = this.props;
+    fetch(`https://api.lyrics.ovh/suggest/${this.state.searchField}`)
       .then((res) => res.json())
       .then((result) => {
         resultChange(result);
@@ -12,7 +20,6 @@ class SearchBox extends Component {
       .catch((err) => console.log(err));
   };
   render() {
-    const { searchChange } = this.props;
     return (
       <form
         id="form"
@@ -24,7 +31,7 @@ class SearchBox extends Component {
         <input
           type="text"
           placeholder="Enter Artist name or Song title"
-          onChange={searchChange}
+          onChange={this.searchChangeHandler}
         />
         <button>Search</button>
       </form>
