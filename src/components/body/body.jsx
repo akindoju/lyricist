@@ -9,7 +9,7 @@ const Body = (props) => {
     <div>
       <ul>
         {result.data.map((songData) => {
-          return <SongItem key={songData.title} song={songData} />;
+          return <SongItem song={songData} />;
         })}
       </ul>
     </div>

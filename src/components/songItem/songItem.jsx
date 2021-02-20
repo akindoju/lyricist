@@ -21,6 +21,8 @@ class SongItem extends Component {
 
   render() {
     const { song } = this.props;
+    const lyrics = this.state.lyrics.lyrics;
+
     return (
       <li>
         <div className="container">
@@ -31,7 +33,16 @@ class SongItem extends Component {
             Get Lyrics
           </button>
         </div>
-        {this.state.lyrics.lyrics}
+        <div>
+          {lyrics.split('\n').map((lyrics) => {
+            return (
+              <div className="lyrics">
+                {lyrics}
+                <br />
+              </div>
+            );
+          })}
+        </div>
       </li>
     );
   }

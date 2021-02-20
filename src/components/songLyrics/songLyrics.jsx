@@ -8,6 +8,7 @@ const SongLyrics = (props) => {
       <h2>
         <strong>{song.artist.name}</strong> - {song.title}
       </h2>
+      {/* <span>${lyrics}</span> */}
     </div>
   );
 };
