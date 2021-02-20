@@ -4,7 +4,7 @@ import './songItem.css';
 class SongItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { lyrics: '' };
+    this.state = { lyrics: { lyrics: '' } };
   }
 
   getLyrics = () => {
@@ -13,8 +13,8 @@ class SongItem extends Component {
     fetch(`https://api.lyrics.ovh/v1/${song.artist.name}/${song.title}`)
       .then((res) => res.json())
       .then((lyrics) => {
-        console.log('I ran');
         console.log(lyrics);
+        this.setState({ lyrics: lyrics });
       })
       .catch((error) => console.log(error));
   };
@@ -22,18 +22,17 @@ class SongItem extends Component {
   render() {
     const { song } = this.props;
     return (
-      <div className="container">
-        <ul>
-          <li>
-            <span>
-              <strong>{song.artist.name}</strong> - {song.title}
-            </span>
-          </li>
+      <li>
+        <div className="container">
+          <span>
+            <strong>{song.artist.name}</strong> - {song.title}
+          </span>
           <button className="btn" onClick={this.getLyrics}>
             Get Lyrics
           </button>
-        </ul>
-      </div>
+        </div>
+        {this.state.lyrics.lyrics}
+      </li>
     );
   }
 }

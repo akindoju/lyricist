@@ -7,9 +7,11 @@ const Body = (props) => {
 
   return (
     <div>
-      {result.data.map((songData) => {
-        return <SongItem song={songData} />;
-      })}
+      <ul>
+        {result.data.map((songData) => {
+          return <SongItem key={songData.title} song={songData} />;
+        })}
+      </ul>
     </div>
   );
 };
