@@ -8,15 +8,15 @@ class SongItem extends Component {
   }
 
   getLyrics = () => {
-    try {
-      console.log('clicked');
-      const { song } = this.props;
-      fetch(`https://api.lyrics.ovh/v1/${song.artist.name}/${song.title}`)
-        .then((res) => res.json())
-        .then((lyrics) => console.log(lyrics));
-    } catch (error) {
-      console.log(error);
-    }
+    console.log('clicked');
+    const { song } = this.props;
+    fetch(`https://api.lyrics.ovh/v1/${song.artist.name}/${song.title}`)
+      .then((res) => res.json())
+      .then((lyrics) => {
+        console.log('I ran');
+        console.log(lyrics);
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
