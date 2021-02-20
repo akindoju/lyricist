@@ -1,5 +1,11 @@
-.lyrics {
+li {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.btn {
+  position: absolute;
+  right: 30%;
 }
