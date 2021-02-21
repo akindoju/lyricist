@@ -3,8 +3,8 @@ import SongLyrics from '../songLyrics/songLyrics';
 import './songItem.css';
 
 const SongItem = (props) => {
-  const [lyricsObj, setLyricsObj] = useState({ lyrics: '' });
   const { song } = props;
+  const [lyricsObj, setLyricsObj] = useState({ lyrics: '' });
 
   const getLyrics = () => {
     console.log('clicked');
