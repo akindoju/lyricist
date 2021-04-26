@@ -1,12 +1,37 @@
 import React from 'react';
-import SearchBox from '../searchBox/searchBox';
-import './header.css';
+import './Header.css';
+import { Formik } from 'formik';
 
-const Header = ({ onResultChange }) => {
+const Header = () => {
   return (
     <div className="header">
-      <h1>Lyricist</h1>
-      <SearchBox resultChange={onResultChange} />
+      <header>
+        <h1>Lyricist</h1>
+        <Formik initialValues={{ keyword: '' }}>
+          {({
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            values,
+            isSubmitting,
+          }) => {
+            return (
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="keyword "
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.keyword}
+                  placeholder="Enter Artist name or Song title"
+                  required
+                />
+                <button>Search</button>
+              </form>
+            );
+          }}
+        </Formik>
+      </header>
     </div>
   );
 };
