@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import { Formik } from 'formik';
+import Body from '../Body/Body';
 
 const Header = () => {
+  const [searchResult, setSearchResult] = useState([]);
+
   return (
-    <div className="header">
+    <div>
       <header>
         <h1>Lyricist</h1>
         <Formik
           initialValues={{ keyword: '' }}
-          onSubmit={() => console.log('Submitted')}
+          onSubmit={async (values, { setSubmitting }) => {
+            setSubmitting(true);
+
+            await fetch(`https://api.lyrics.ovh/suggest/${values.keyword}`)
+              .then((res) => res.json())
+              .then((data) => {
+                setSearchResult(data.data);
+              });
+          }}
         >
           {({
             handleBlur,
@@ -35,6 +46,7 @@ const Header = () => {
           }}
         </Formik>
       </header>
+      <Body searchResult={searchResult} />
     </div>
   );
 };

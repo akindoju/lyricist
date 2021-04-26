@@ -66,11 +66,3 @@ form button {
 form button:hover {
   background-color: rgb(5, 96, 182);
 }
-
-.btn {
-  background-color: #8d56fd;
-  border: 0;
-  border-radius: 10px;
-  color: white;
-  padding: 4px 10px;
-}
