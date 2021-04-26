@@ -7,7 +7,10 @@ const Header = () => {
     <div className="header">
       <header>
         <h1>Lyricist</h1>
-        <Formik initialValues={{ keyword: '' }}>
+        <Formik
+          initialValues={{ keyword: '' }}
+          onSubmit={() => console.log('Submitted')}
+        >
           {({
             handleBlur,
             handleChange,
@@ -19,14 +22,14 @@ const Header = () => {
               <form onSubmit={handleSubmit}>
                 <input
                   type="text"
-                  name="keyword "
+                  name="keyword"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.keyword}
                   placeholder="Enter Artist name or Song title"
                   required
                 />
-                <button>Search</button>
+                <button type="submit">Search</button>
               </form>
             );
           }}
